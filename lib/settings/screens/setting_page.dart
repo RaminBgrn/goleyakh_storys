@@ -12,11 +12,15 @@ class SettingPage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: "نام محصول",
-                  alignLabelWithHint: true,
+              padding: EdgeInsets.all(15.0),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: TextField(
+                  textDirection: TextDirection.rtl,
+                  decoration: InputDecoration(
+                    labelText: "نام محصول",
+                    alignLabelWithHint: true,
+                  ),
                 ),
               ),
             ),

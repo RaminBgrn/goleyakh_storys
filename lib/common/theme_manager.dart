@@ -1,47 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ThemeManager {
   static final ThemeData _myTheme = ThemeData(
-    textTheme: TextTheme(
-      labelLarge: GoogleFonts.karla(fontSize: 14, color: Colors.grey.shade700, fontWeight: FontWeight.bold),
-      labelMedium: GoogleFonts.karla(
-        fontSize: 12,
-        color: Colors.grey.shade500,
-        fontWeight: FontWeight.w500,
-      ),
-      labelSmall: GoogleFonts.karla(
-        fontSize: 11,
-        color: Colors.grey.shade500,
-        fontWeight: FontWeight.w300,
-      ),
-      bodyLarge: GoogleFonts.karla(
-        fontSize: 16,
-        color: Colors.grey.shade800,
+    textTheme: const TextTheme(
+      labelLarge: TextStyle(
+        fontFamily: 'mikhak',
+        fontSize: 14,
         fontWeight: FontWeight.bold,
       ),
-      bodyMedium: GoogleFonts.karla(
-        fontSize: 14,
-        color: Colors.grey.shade700,
-        fontWeight: FontWeight.normal,
-      ),
-      bodySmall: GoogleFonts.karla(
+      labelMedium: TextStyle(
+        fontFamily: 'mikhak',
         fontSize: 12,
-        color: Colors.grey.shade600,
+        fontWeight: FontWeight.w500,
+      ),
+      labelSmall: TextStyle(
+        fontFamily: 'mikhak',
+        fontSize: 11,
         fontWeight: FontWeight.w300,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: 'mikhak',
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: 'mikhak',
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+      ),
+      bodySmall: TextStyle(
+        fontFamily: 'mikhak',
+        fontSize: 12,
+        fontWeight: FontWeight.w800,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
         floatingLabelAlignment: FloatingLabelAlignment.start,
-        floatingLabelStyle: GoogleFonts.karla(
-          fontSize: 18,
-          color: Colors.grey.shade600,
+        labelStyle: const TextStyle(
+          fontFamily: 'mikhak',
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+        floatingLabelStyle: const TextStyle(
+          fontFamily: 'mikhak',
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
         ),
         fillColor: Colors.grey.shade100,
         filled: true,
-        hintStyle: GoogleFonts.karla(
+        hintStyle: const TextStyle(
+          fontFamily: 'mikhak',
           fontSize: 14,
-          color: Colors.grey.shade300,
+          fontWeight: FontWeight.w600,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
