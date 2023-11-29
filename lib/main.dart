@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:goleyakh_storys/common/base_controller.dart';
+import 'package:goleyakh_storys/common/theme_manager.dart';
 import 'package:goleyakh_storys/home.dart';
 
 void main() {
@@ -10,12 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      initialBinding: BaseController(),
+      theme: ThemeManager.getTheme,
       home: const Home(),
     );
   }
