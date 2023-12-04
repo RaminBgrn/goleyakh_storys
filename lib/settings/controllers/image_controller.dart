@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:get/get.dart';
+import 'package:goleyakh_storys/settings/models/image_model.dart';
 
 class ImageController extends GetxController {
-  late File _image;
-  File get getImageSelected => _image;
+  final List<ImageModel> _image = [];
+  List<ImageModel> get getImageSelected => _image;
 }

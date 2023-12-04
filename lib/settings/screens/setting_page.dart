@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:goleyakh_storys/common/static.dart';
+import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
+import 'package:goleyakh_storys/settings/widgets/image_item.dart';
+import 'package:goleyakh_storys/static/colors.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -123,8 +126,49 @@ class SettingPage extends StatelessWidget {
               ],
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Expanded(child: Image.)
+                Expanded(
+                  child: Container(
+                    height: 200,
+                    margin: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: myGreen[50]!.withOpacity(0.5),
+                    ),
+                    child: GetBuilder<ImageController>(
+                      builder: (clr) {
+                        return clr.getImageSelected.isEmpty
+                            ? const Center(child: Text('عکس‌های محصول'))
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: 8, // clr.getImageSelected.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return ImageItem(
+                                    image: clr.getImageSelected[index].imagePath,
+                                  );
+                                },
+                              );
+                      },
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    margin: const EdgeInsets.only(
+                      right: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: myGreen[300]!.withOpacity(0.2),
+                    ),
+                    child: const Icon(Icons.add),
+                  ),
+                ),
               ],
             )
           ],
