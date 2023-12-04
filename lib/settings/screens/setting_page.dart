@@ -1,11 +1,13 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:goleyakh_storys/common/static.dart';
 import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
+import 'package:goleyakh_storys/settings/widgets/choose_size_dialog.dart';
 import 'package:goleyakh_storys/settings/widgets/image_item.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 
@@ -126,7 +128,35 @@ class SettingPage extends StatelessWidget {
               ],
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                      color: myRose[200],
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(
+                        width: 1,
+                        color: myGrey[400]!,
+                      )),
+                ),
+                const Gap(10),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      myGreen[100]!.withOpacity(0.8),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'رنگ پس زمینه',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ),
+              ],
+            ),
+            Row(
               children: [
                 Expanded(
                   child: Container(
@@ -155,7 +185,9 @@ class SettingPage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.find<ImageController>().chooseImage();
+                  },
                   child: Container(
                     width: 60,
                     height: 60,
@@ -170,7 +202,44 @@ class SettingPage extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  myGreen[100]!.withOpacity(0.8),
+                ),
+              ),
+              onPressed: () {
+                MyCustomDialogs.chooseSize();
+              },
+              child: Text(
+                'سایز بندی',
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+            ),
+            Container(
+              height: 200,
+              margin: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: myGreen[50]!.withOpacity(0.5),
+              ),
+              child: GetBuilder<ImageController>(
+                builder: (clr) {
+                  return clr.getImageSelected.isEmpty
+                      ? const Center(child: Text('سایز بندی'))
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 8, // clr.getImageSelected.length,
+                          itemBuilder: (context, index) {
+                            return ImageItem(
+                              image: clr.getImageSelected[index].imagePath,
+                            );
+                          },
+                        );
+                },
+              ),
+            ),
           ],
         ),
       ),
