@@ -121,6 +121,11 @@ class SettingPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Row(
+              children: [
+                // Expanded(child: Image.)
+              ],
             )
           ],
         ),
