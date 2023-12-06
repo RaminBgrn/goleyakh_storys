@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:goleyakh_storys/common/static.dart';
+import 'package:goleyakh_storys/settings/controllers/color_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
@@ -130,30 +131,37 @@ class SettingPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color: myRose[200],
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        width: 1,
-                        color: myGrey[400]!,
-                      )),
-                ),
                 const Gap(10),
+                GetBuilder<ColorController>(
+                  builder: (clr) {
+                    return Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        color: myRose[200],
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          width: 1,
+                          color: myGrey[400]!,
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       myGreen[100]!.withOpacity(0.8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<ColorController>().chooseColor();
+                  },
                   child: Text(
                     'رنگ پس زمینه',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
-                ),
+                )
               ],
             ),
             Row(
@@ -164,7 +172,7 @@ class SettingPage extends StatelessWidget {
                     margin: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: myGreen[50]!.withOpacity(0.5),
+                      color: myGrey[300]!.withOpacity(0.5),
                     ),
                     child: GetBuilder<ImageController>(
                       builder: (clr) {
@@ -222,7 +230,7 @@ class SettingPage extends StatelessWidget {
               margin: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: myGreen[50]!.withOpacity(0.5),
+                color: myGrey[300]!.withOpacity(0.5),
               ),
               child: GetBuilder<ImageController>(
                 builder: (clr) {
