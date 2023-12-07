@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:goleyakh_storys/settings/models/image_model.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class ImageController extends GetxController {
   final List<ImageModel> _image = [];
@@ -33,7 +34,9 @@ class ImageController extends GetxController {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _takePhotoFromCamera();
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 decoration: BoxDecoration(
@@ -51,7 +54,9 @@ class ImageController extends GetxController {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _chooseImageFromGallery();
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 decoration: BoxDecoration(
@@ -72,5 +77,26 @@ class ImageController extends GetxController {
         ),
       ),
     );
+  }
+
+  void removeImage(int index) {
+    _image.removeAt(index);
+    update();
+  }
+
+  void _takePhotoFromCamera() async {
+    Get.back();
+    XFile? cameraPhoto = await picker.pickImage(source: ImageSource.camera);
+    if (cameraPhoto == null) return;
+    _image.add(ImageModel(title: basename(cameraPhoto.path), imagePath: cameraPhoto.path));
+    update();
+  }
+
+  void _chooseImageFromGallery() async {
+    Get.back();
+    XFile? galleryImage = await picker.pickImage(source: ImageSource.gallery);
+    if (galleryImage == null) return;
+    _image.add(ImageModel(title: basename(galleryImage.path), imagePath: galleryImage.path));
+    update();
   }
 }

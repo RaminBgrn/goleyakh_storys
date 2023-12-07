@@ -10,7 +10,7 @@ class ColorController extends GetxController {
   void chooseColor() {
     Get.dialog(Dialog(
       insetPadding: EdgeInsets.zero,
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.sizeOf(Get.context!).height / 1.5,
         child: ColorPicker(
           enableOpacity: true,

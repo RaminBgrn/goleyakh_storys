@@ -181,10 +181,11 @@ class SettingPage extends StatelessWidget {
                             ? const Center(child: Text('عکس‌های محصول'))
                             : ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: 8, // clr.getImageSelected.length,
+                                itemCount: clr.getImageSelected.length, // clr.getImageSelected.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return ImageItem(
+                                    onRemove: () => clr.removeImage(index),
                                     image: clr.getImageSelected[index].imagePath,
                                   );
                                 },
@@ -239,9 +240,10 @@ class SettingPage extends StatelessWidget {
                       ? const Center(child: Text('سایز بندی'))
                       : ListView.builder(
                           shrinkWrap: true,
-                          itemCount: 8, // clr.getImageSelected.length,
+                          itemCount: clr.getImageSelected.length, // clr.getImageSelected.length,
                           itemBuilder: (context, index) {
                             return ImageItem(
+                              onRemove: () => clr.removeImage(index),
                               image: clr.getImageSelected[index].imagePath,
                             );
                           },
