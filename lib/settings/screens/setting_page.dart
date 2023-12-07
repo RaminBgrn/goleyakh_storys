@@ -138,7 +138,7 @@ class SettingPage extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(
-                        color: myRose[200],
+                        color: clr.getBackgroundColor,
                         borderRadius: BorderRadius.circular(100),
                         border: Border.all(
                           width: 1,
@@ -148,6 +148,7 @@ class SettingPage extends StatelessWidget {
                     );
                   },
                 ),
+                const Gap(18),
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(

@@ -26,11 +26,11 @@ class ColorController extends GetxController {
           wheelDiameter: 230,
           wheelWidth: 18,
           wheelHasBorder: true,
-          onColorChanged: (color) {
-            print(color);
+          onColorChangeEnd: (color) {
             _selectedColor = color;
             update();
           },
+          onColorChanged: (color) {},
         ),
       ),
     ));
