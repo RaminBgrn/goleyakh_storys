@@ -1,16 +1,13 @@
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:goleyakh_storys/common/static.dart';
 import 'package:goleyakh_storys/settings/controllers/color_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
-import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
 import 'package:goleyakh_storys/settings/models/size_model.dart';
 import 'package:goleyakh_storys/settings/widgets/choose_size_dialog.dart';
+import 'package:goleyakh_storys/settings/widgets/drop_down_widget.dart';
 import 'package:goleyakh_storys/settings/widgets/image_item.dart';
 import 'package:goleyakh_storys/settings/widgets/size_items.dart';
 import 'package:goleyakh_storys/static/colors.dart';
@@ -70,30 +67,7 @@ class SettingPage extends StatelessWidget {
                 ),
               ),
             ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: CustomDropdown<DropDownModel>(
-                hintText: 'برند',
-                expandedFillColor: myGrey[500],
-                items: DropDownModel.parsData(brandsPath),
-                searchHintText: "جستجو",
-                excludeSelected: false,
-                closedFillColor: myGrey[600],
-                onChanged: (value) {},
-                listItemBuilder: (context, value) {
-                  return SizedBox(
-                    height: 80,
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                      Text(value.name),
-                      SvgPicture.asset(
-                        value.path,
-                        width: 80,
-                      ),
-                    ]),
-                  );
-                },
-              ),
-            ),
+            DropDownWidget(),
             Row(
               textDirection: TextDirection.rtl,
               children: [
