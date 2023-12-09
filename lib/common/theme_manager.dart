@@ -3,6 +3,7 @@ import 'package:goleyakh_storys/static/colors.dart';
 
 class ThemeManager {
   static final ThemeData _myTheme = ThemeData(
+    primaryColor: myGrey[700],
     textTheme: TextTheme(
       labelLarge: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.bold, color: myGrey[200]!),
       labelMedium: TextStyle(fontFamily: 'mikhak', fontSize: 12, fontWeight: FontWeight.w500, color: myGrey[200]!),

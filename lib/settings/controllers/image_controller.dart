@@ -23,9 +23,9 @@ class ImageController extends GetxController {
       Container(
         width: 400,
         height: 200,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: myGrey[700],
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(24),
             topRight: Radius.circular(24),
           ),
@@ -41,12 +41,17 @@ class ImageController extends GetxController {
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  color: myGreen[900]!.withOpacity(0.2),
+                  color: myGreen[900]!.withOpacity(0.3),
+                  border: Border.all(width: 1, color: myGreen[300]!),
                 ),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   SvgPicture.asset(
                     'svgs/camera.svg',
                     width: 80,
+                    colorFilter: ColorFilter.mode(
+                      myOrange[100]!,
+                      BlendMode.srcIn,
+                    ),
                   ),
                   const Gap(8),
                   const Text('دوربین')
@@ -61,12 +66,17 @@ class ImageController extends GetxController {
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  color: myGreen[900]!.withOpacity(0.2),
+                  color: myGreen[900]!.withOpacity(0.3),
+                  border: Border.all(width: 1, color: myGreen[400]!),
                 ),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   SvgPicture.asset(
                     'svgs/gallery.svg',
                     width: 80,
+                    colorFilter: ColorFilter.mode(
+                      myOrange[100]!,
+                      BlendMode.srcIn,
+                    ),
                   ),
                   const Gap(8),
                   const Text('گالری')

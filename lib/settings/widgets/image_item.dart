@@ -23,7 +23,7 @@ class ImageItem extends StatelessWidget {
           margin: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
+            color: myGrey[700],
           ),
           child: Stack(
             children: [

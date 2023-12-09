@@ -14,7 +14,7 @@ class MyCustomDialogs {
             height: 610,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: myGrey[700],
               borderRadius: BorderRadius.circular(18),
             ),
             child: SingleChildScrollView(
@@ -82,11 +82,22 @@ class MyCustomDialogs {
                   ),
                   const Gap(8),
                   ElevatedButton(
-                      onPressed: () {
-                        /// TODO create save logic
-                        Get.back();
-                      },
-                      child: const Text('ذخیره'))
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: myGreen[900]!.withOpacity(0.3),
+                      side: BorderSide(
+                        width: 2,
+                        color: myGreen[600]!,
+                      ),
+                    ),
+                    onPressed: () {
+                      /// TODO create save logic
+                      Get.back();
+                    },
+                    child: Text(
+                      'ذخیره',
+                      style: TextStyle(fontSize: 13, color: myGrey[300]!),
+                    ),
+                  )
                 ],
               ),
             ),

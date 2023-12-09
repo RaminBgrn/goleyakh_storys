@@ -10,6 +10,7 @@ import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
 import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
 import 'package:goleyakh_storys/settings/models/size_model.dart';
+import 'package:goleyakh_storys/settings/widgets/choose_size_dialog.dart';
 import 'package:goleyakh_storys/settings/widgets/image_item.dart';
 import 'package:goleyakh_storys/settings/widgets/size_items.dart';
 import 'package:goleyakh_storys/static/colors.dart';
@@ -199,10 +200,8 @@ class SettingPage extends StatelessWidget {
                       builder: (clr) {
                         return ListView.builder(
                           shrinkWrap: true,
-
-                          itemCount: clr.getImageSelected.length + 1, // clr.getImageSelected.length,
+                          itemCount: clr.getImageSelected.length + 1,
                           scrollDirection: Axis.horizontal,
-
                           itemBuilder: (context, index) {
                             return (clr.getImageSelected.length == index || clr.getImageSelected.isEmpty)
                                 ? GestureDetector(
@@ -220,9 +219,16 @@ class SettingPage extends StatelessWidget {
                                       ),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
-                                        color: myGreen[300]!.withOpacity(0.2),
+                                        color: myGreen[900]!.withOpacity(0.3),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: myGreen[600]!,
+                                        ),
                                       ),
-                                      child: const Icon(Icons.add),
+                                      child: Icon(
+                                        Icons.add,
+                                        color: myGrey[300]!,
+                                      ),
                                     ),
                                   )
                                 : ImageItem(
@@ -268,7 +274,9 @@ class SettingPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return (clr.getSizeModel.length == index || clr.getSizeModel.isEmpty)
                           ? GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                MyCustomDialogs.chooseSize();
+                              },
                               child: Container(
                                 width: 60,
                                 height: 60,
@@ -285,6 +293,10 @@ class SettingPage extends StatelessWidget {
                                     width: 2,
                                     color: myGreen[600]!,
                                   ),
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  color: myGrey[300]!,
                                 ),
                               ),
                             )
