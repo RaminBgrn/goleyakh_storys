@@ -1,58 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:goleyakh_storys/static/colors.dart';
 
 class ThemeManager {
   static final ThemeData _myTheme = ThemeData(
-    textTheme: const TextTheme(
-      labelLarge: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-      ),
-      labelMedium: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-      ),
-      labelSmall: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 11,
-        fontWeight: FontWeight.w300,
-      ),
-      bodyLarge: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-      bodyMedium: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 14,
-        fontWeight: FontWeight.w700,
-      ),
-      bodySmall: TextStyle(
-        fontFamily: 'mikhak',
-        fontSize: 12,
-        fontWeight: FontWeight.w800,
-      ),
+    textTheme: TextTheme(
+      labelLarge: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.bold, color: myGrey[200]!),
+      labelMedium: TextStyle(fontFamily: 'mikhak', fontSize: 12, fontWeight: FontWeight.w500, color: myGrey[200]!),
+      labelSmall: TextStyle(fontFamily: 'mikhak', fontSize: 11, fontWeight: FontWeight.w300, color: myGrey[200]!),
+      bodyLarge: TextStyle(fontFamily: 'mikhak', fontSize: 16, fontWeight: FontWeight.bold, color: myGrey[200]!),
+      bodyMedium: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.w700, color: myGrey[200]!),
+      bodySmall: TextStyle(fontFamily: 'mikhak', fontSize: 12, fontWeight: FontWeight.w800, color: myGrey[200]!),
     ),
     inputDecorationTheme: InputDecorationTheme(
         floatingLabelAlignment: FloatingLabelAlignment.start,
-        labelStyle: const TextStyle(
-          fontFamily: 'mikhak',
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        floatingLabelStyle: const TextStyle(
-          fontFamily: 'mikhak',
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        fillColor: Colors.grey.shade100,
+        labelStyle: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.w600, color: myGrey[200]!),
+        floatingLabelStyle: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.w500, color: myGrey[200]!),
+        fillColor: myGrey[600],
         filled: true,
-        hintStyle: const TextStyle(
-          fontFamily: 'mikhak',
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
+        hintStyle: TextStyle(fontFamily: 'mikhak', fontSize: 14, fontWeight: FontWeight.w600, color: myGrey[200]!),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           // borderSide: BorderSide.none,

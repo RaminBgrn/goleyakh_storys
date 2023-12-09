@@ -7,9 +7,11 @@ import 'package:goleyakh_storys/common/static.dart';
 import 'package:goleyakh_storys/settings/controllers/color_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
+import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
 import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
-import 'package:goleyakh_storys/settings/widgets/choose_size_dialog.dart';
+import 'package:goleyakh_storys/settings/models/size_model.dart';
 import 'package:goleyakh_storys/settings/widgets/image_item.dart';
+import 'package:goleyakh_storys/settings/widgets/size_items.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 
 class SettingPage extends StatelessWidget {
@@ -17,14 +19,15 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: myGrey[800],
       width: double.infinity,
       height: MediaQuery.sizeOf(context).height,
       child: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(8.0),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
@@ -38,7 +41,7 @@ class SettingPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(8.0),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
@@ -52,7 +55,7 @@ class SettingPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(8.0),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
@@ -68,11 +71,13 @@ class SettingPage extends StatelessWidget {
             ),
             Directionality(
               textDirection: TextDirection.rtl,
-              child: CustomDropdown<DropDownModel>.search(
+              child: CustomDropdown<DropDownModel>(
                 hintText: 'برند',
+                expandedFillColor: myGrey[500],
                 items: DropDownModel.parsData(brandsPath),
                 searchHintText: "جستجو",
                 excludeSelected: false,
+                closedFillColor: myGrey[600],
                 onChanged: (value) {},
                 listItemBuilder: (context, value) {
                   return SizedBox(
@@ -129,14 +134,13 @@ class SettingPage extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Gap(10),
                 GetBuilder<ColorController>(
                   builder: (clr) {
                     return Container(
-                      width: 35,
-                      height: 35,
+                      width: 120,
+                      height: 40,
                       decoration: BoxDecoration(
                         color: clr.getBackgroundColor,
                         borderRadius: BorderRadius.circular(100),
@@ -150,9 +154,11 @@ class SettingPage extends StatelessWidget {
                 ),
                 const Gap(18),
                 ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      myGreen[100]!.withOpacity(0.8),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: myGreen[900]!.withOpacity(0.3),
+                    side: BorderSide(
+                      width: 2,
+                      color: myGreen[600]!,
                     ),
                   ),
                   onPressed: () {
@@ -165,6 +171,20 @@ class SettingPage extends StatelessWidget {
                 )
               ],
             ),
+            const Gap(8),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'تصاویر محصول',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
+            ),
+            const Gap(8),
             Row(
               children: [
                 Expanded(
@@ -173,84 +193,110 @@ class SettingPage extends StatelessWidget {
                     margin: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: myGrey[300]!.withOpacity(0.5),
+                      color: myGrey[600]!.withOpacity(0.5),
                     ),
                     child: GetBuilder<ImageController>(
                       builder: (clr) {
-                        return clr.getImageSelected.isEmpty
-                            ? const Center(child: Text('عکس‌های محصول'))
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: clr.getImageSelected.length, // clr.getImageSelected.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) {
-                                  return ImageItem(
+                        return ListView.builder(
+                          shrinkWrap: true,
+
+                          itemCount: clr.getImageSelected.length + 1, // clr.getImageSelected.length,
+                          scrollDirection: Axis.horizontal,
+
+                          itemBuilder: (context, index) {
+                            return (clr.getImageSelected.length == index || clr.getImageSelected.isEmpty)
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Get.find<ImageController>().chooseImage();
+                                    },
+                                    child: Container(
+                                      width: 60,
+                                      height: 60,
+                                      margin: const EdgeInsets.only(
+                                        top: 70,
+                                        bottom: 70,
+                                        left: 8,
+                                        right: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: myGreen[300]!.withOpacity(0.2),
+                                      ),
+                                      child: const Icon(Icons.add),
+                                    ),
+                                  )
+                                : ImageItem(
                                     onRemove: () => clr.removeImage(index),
-                                    image: clr.getImageSelected[index].imagePath,
+                                    image: clr.getImageSelected[(index == 0) ? index : index - 1].imagePath,
                                   );
-                                },
-                              );
+                          },
+                        );
                       },
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Get.find<ImageController>().chooseImage();
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    margin: const EdgeInsets.only(
-                      right: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: myGreen[300]!.withOpacity(0.2),
-                    ),
-                    child: const Icon(Icons.add),
-                  ),
-                ),
               ],
             ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  myGreen[100]!.withOpacity(0.8),
+            const Gap(8),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'سایز بندی محصول',
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
-              onPressed: () {
-                MyCustomDialogs.chooseSize();
-              },
-              child: Text(
-                'سایز بندی',
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
             ),
+            const Gap(8),
             Container(
-              height: 200,
+              height: 180,
+              width: double.infinity,
               margin: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: myGrey[300]!.withOpacity(0.5),
+                color: myGrey[600]!.withOpacity(0.5),
               ),
-              child: GetBuilder<ImageController>(
+              child: GetBuilder<SizeController>(
                 builder: (clr) {
-                  return clr.getImageSelected.isEmpty
-                      ? const Center(child: Text('سایز بندی'))
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: clr.getImageSelected.length, // clr.getImageSelected.length,
-                          itemBuilder: (context, index) {
-                            return ImageItem(
-                              onRemove: () => clr.removeImage(index),
-                              image: clr.getImageSelected[index].imagePath,
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: clr.getSizeModel.length + 1,
+                    itemBuilder: (context, index) {
+                      return (clr.getSizeModel.length == index || clr.getSizeModel.isEmpty)
+                          ? GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                margin: const EdgeInsets.only(
+                                  top: 60,
+                                  bottom: 60,
+                                  left: 8,
+                                  right: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: myGreen[900]!.withOpacity(0.3),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: myGreen[600]!,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : SizeItem(
+                              model: SizeModel(),
                             );
-                          },
-                        );
+                    },
+                  );
                 },
               ),
             ),
+            const Gap(15),
           ],
         ),
       ),
