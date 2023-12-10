@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 
 class MyCustomDialogs {
@@ -40,10 +41,11 @@ class MyCustomDialogs {
                     ),
                   ),
                   const Gap(12),
-                  const Directionality(
+                  Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: Get.find<SizeController>().getSizeTextEditingController,
+                      decoration: const InputDecoration(
                         label: Text('سایز'),
                       ),
                     ),
@@ -52,6 +54,9 @@ class MyCustomDialogs {
                   const Center(
                     child: Text('اختیاری'),
                   ),
+
+                  //child: Text(intl.NumberFormat.currency(name: ' ', decimalDigits: 0).format(3580000)),
+
                   const Gap(8),
                   _meter(title: 'متن قسمت متر شده', value: "مقدار"),
                   const Gap(4),

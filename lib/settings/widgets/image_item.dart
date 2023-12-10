@@ -20,10 +20,10 @@ class ImageItem extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(
-          margin: const EdgeInsets.all(4),
+          margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: myGrey[700],
+            color: myGrey[100],
           ),
           child: Stack(
             children: [
