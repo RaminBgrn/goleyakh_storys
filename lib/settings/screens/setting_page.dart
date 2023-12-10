@@ -67,7 +67,7 @@ class SettingPage extends StatelessWidget {
                 ),
               ),
             ),
-            DropDownWidget(),
+            const DropDownWidget(),
             Row(
               textDirection: TextDirection.rtl,
               children: [
@@ -177,38 +177,40 @@ class SettingPage extends StatelessWidget {
                           itemCount: clr.getImageSelected.length + 1,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
-                            return (clr.getImageSelected.length == index || clr.getImageSelected.isEmpty)
-                                ? GestureDetector(
-                                    onTap: () {
-                                      Get.find<ImageController>().chooseImage();
-                                    },
-                                    child: Container(
-                                      width: 60,
-                                      height: 60,
-                                      margin: const EdgeInsets.only(
-                                        top: 70,
-                                        bottom: 70,
-                                        left: 8,
-                                        right: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: myGreen[900]!.withOpacity(0.3),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: myGreen[600]!,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.add,
-                                        color: myGrey[300]!,
-                                      ),
+                            if (clr.getImageSelected.length == index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.find<ImageController>().chooseImage();
+                                },
+                                child: Container(
+                                  width: 60,
+                                  height: 60,
+                                  margin: const EdgeInsets.only(
+                                    top: 70,
+                                    bottom: 70,
+                                    left: 8,
+                                    right: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: myGreen[900]!.withOpacity(0.3),
+                                    border: Border.all(
+                                      width: 2,
+                                      color: myGreen[600]!,
                                     ),
-                                  )
-                                : ImageItem(
-                                    onRemove: () => clr.removeImage(index),
-                                    image: clr.getImageSelected[(index == 0) ? index : index - 1].imagePath,
-                                  );
+                                  ),
+                                  child: Icon(
+                                    Icons.add,
+                                    color: myGrey[300]!,
+                                  ),
+                                ),
+                              );
+                            }
+
+                            return ImageItem(
+                              onRemove: () => clr.removeImage(index),
+                              image: clr.getImageSelected[index].imagePath,
+                            );
                           },
                         );
                       },
