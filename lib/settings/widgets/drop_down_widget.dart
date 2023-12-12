@@ -10,22 +10,8 @@ import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 import 'package:path/path.dart';
 
-class DropDownWidget extends StatefulWidget {
+class DropDownWidget extends StatelessWidget {
   const DropDownWidget({super.key});
-
-  @override
-  State<DropDownWidget> createState() => _DropDownWidgetState();
-}
-
-class _DropDownWidgetState extends State<DropDownWidget> {
-  String selectedItem = "برند محصول";
-  late DropDownModel dropDownModel;
-
-  @override
-  void initState() {
-    dropDownModel = DropDownModel(name: '', path: '');
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +21,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         child: DropdownButtonHideUnderline(
           child: DropdownButton2<DropDownModel>(
             isExpanded: true,
-            hint: (dropDownModel.path.isNotEmpty)
+            hint: (clr.getDropDownModel.path.isNotEmpty)
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -45,12 +31,12 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                           color: myGrey[900]!.withOpacity(0.4),
                         ),
                         child: SvgPicture.asset(
-                          dropDownModel.path,
+                          clr.getDropDownModel.path,
                         ),
                       ),
                       const Gap(10),
                       Text(
-                        dropDownModel.name,
+                        clr.getDropDownModel.name,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -62,7 +48,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                     ],
                   )
                 : Text(
-                    selectedItem,
+                    clr.getSelectedItem,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -95,9 +81,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                     ))
                 .toList(),
             onChanged: (v) {
-              setState(() {
-                dropDownModel = v!;
-              });
+              clr.changeDropDownItem(v!);
             },
             buttonStyleData: ButtonStyleData(
               height: 50,

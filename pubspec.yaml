@@ -46,6 +46,7 @@ dependencies:
   flex_color_picker: ^3.3.0
   dropdown_button2: ^2.3.9
   currency_text_input_formatter: ^2.1.13
+  salomon_bottom_bar: ^3.3.2
 
 dev_dependencies:
   flutter_test:
@@ -107,8 +108,30 @@ flutter:
           weight: 800
         - asset: fonts/mikhak_black.ttf
           weight: 900
-        
-
+    - family: lalezar
+      fonts:
+        - asset: fonts/lalezar_regular.ttf
+          weight: 500
+    - family: estedad
+      fonts:
+        - asset: fonts/estedad-fd-Thin.ttf
+          weight: 100
+        - asset: fonts/estedad-fd-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/estedad-fd-Light.ttf
+          weight: 300
+        - asset: fonts/estedad-fd-Regular.ttf
+          weight: 400
+        - asset: fonts/estedad-fd-Medium.ttf
+          weight: 500
+        - asset: fonts/estedad-fd-SemiBold.ttf
+          weight: 600
+        - asset: fonts/estedad-fd-Bold.ttf
+          weight: 700
+        - asset: fonts/estedad-fd-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/estedad-fd-Black.ttf
+          weight: 900
     # - family: Trajan Pro
     #   fonts:
     #     - asset: fonts/TrajanPro.ttf

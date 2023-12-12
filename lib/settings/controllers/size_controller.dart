@@ -18,8 +18,8 @@ class SizeController extends GetxController {
   TextEditingController get getProductMeterValueNumOneTextEditingController => _productMeterValueNumOneTextEditingController;
 
   // get product meter title value num tow
-  final TextEditingController _productMeterTitleNumTowTextEditingController = TextEditingController();
-  TextEditingController get getProductMeterTitleNumTowTextEditingController => _productMeterTitleNumTowTextEditingController;
+  final TextEditingController _productMeterTitleNumTwoTextEditingController = TextEditingController();
+  TextEditingController get getProductMeterTitleNumTowTextEditingController => _productMeterTitleNumTwoTextEditingController;
   final TextEditingController _productMeterValueNumTowTextEditingController = TextEditingController();
   TextEditingController get getProductMeterValueNumTowTextEditingController => _productMeterValueNumTowTextEditingController;
 
@@ -54,11 +54,24 @@ class SizeController extends GetxController {
       discounted: _discountPriceTextEditingController.text,
       titleOne: _productMeterTitleNumOneTextEditingController.text,
       valueOne: _productMeterValueNumOneTextEditingController.text,
-      titleTwo: _productMeterTitleNumTowTextEditingController.text,
+      titleTwo: _productMeterTitleNumTwoTextEditingController.text,
       valueTwo: _productMeterValueNumTowTextEditingController.text,
       titleThree: _productTitleNumThreeTextEditingController.text,
       valueThree: _productValueNumThreeTextEditingController.text,
     ));
+    _clearSizeTextData();
     update();
+  }
+
+  void _clearSizeTextData() {
+    _discountPriceTextEditingController.clear();
+    _priceTextEditingController.clear();
+    _productMeterTitleNumOneTextEditingController.clear();
+    _productMeterValueNumOneTextEditingController.clear();
+    _productMeterTitleNumTwoTextEditingController.clear();
+    _productMeterValueNumTowTextEditingController.clear();
+    _productTitleNumThreeTextEditingController.clear();
+    _productValueNumThreeTextEditingController.clear();
+    _sizeTextEditingController.clear();
   }
 }

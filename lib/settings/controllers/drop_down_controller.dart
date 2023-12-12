@@ -4,17 +4,28 @@ import 'package:goleyakh_storys/settings/models/drop_down_model.dart';
 import 'package:path/path.dart';
 
 class DropDownController extends GetxController {
-  List<DropDownModel> _dropDownModel = [];
-  List<DropDownModel> get getDorpDownModel => _dropDownModel;
+  final List<DropDownModel> _dropDownModels = [];
+  List<DropDownModel> get getDorpDownModels => _dropDownModels;
+
+  DropDownModel _dropDownModel = DropDownModel(name: '', path: '');
+  DropDownModel get getDropDownModel => _dropDownModel;
+
+  final String _selectedItem = "برند محصول";
+  String get getSelectedItem => _selectedItem;
 
   @override
   void onInit() {
     for (String item in brandsPath) {
-      _dropDownModel.add(
+      _dropDownModels.add(
         DropDownModel(name: basename(item), path: item),
       );
     }
     update();
     super.onInit();
+  }
+
+  void changeDropDownItem(DropDownModel model) {
+    _dropDownModel = model;
+    update();
   }
 }

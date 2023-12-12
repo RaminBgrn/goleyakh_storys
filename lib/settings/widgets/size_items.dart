@@ -30,6 +30,7 @@ class SizeItem extends StatelessWidget {
               child: Container(
                 width: 40,
                 height: 40,
+                padding: const EdgeInsets.only(top: 3),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),

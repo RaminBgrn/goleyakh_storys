@@ -5,7 +5,6 @@ import 'package:goleyakh_storys/settings/controllers/color_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/image_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
-import 'package:goleyakh_storys/settings/models/size_model.dart';
 import 'package:goleyakh_storys/settings/widgets/choose_size_dialog.dart';
 import 'package:goleyakh_storys/settings/widgets/drop_down_widget.dart';
 import 'package:goleyakh_storys/settings/widgets/image_item.dart';
@@ -79,7 +78,7 @@ class SettingPage extends StatelessWidget {
                       child: Directionality(
                         textDirection: TextDirection.rtl,
                         child: TextField(
-                          controller: Get.find<SettingController>().getCountryMadeProductController,
+                          controller: Get.find<SettingController>().getProductSKUController,
                           textDirection: TextDirection.rtl,
                           decoration: const InputDecoration(
                             labelText: "کد محصول",
