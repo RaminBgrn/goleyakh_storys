@@ -57,17 +57,34 @@ class MyCustomDialogs {
 
                   //child: Text(intl.NumberFormat.currency(name: ' ', decimalDigits: 0).format(3580000)),
 
-                  const Gap(8),
-                  _meter(title: 'متن قسمت متر شده', value: "مقدار"),
-                  const Gap(4),
-                  _meter(title: 'متن قسمت متر شده', value: "مقدار"),
-                  const Gap(4),
-                  _meter(title: 'متن قسمت متر شده', value: "مقدار"),
-                  const Gap(8),
-                  const Directionality(
+                  const Gap(16),
+                  _meter(
+                      title: 'متن قسمت متر شده',
+                      value: "مقدار",
+                      titleController: Get.find<SizeController>().getProductMeterTitleNumOneTextEditingController,
+                      valueController: Get.find<SizeController>().getProductMeterValueNumOneTextEditingController),
+                  const Gap(10),
+                  _meter(
+                    title: 'متن قسمت متر شده',
+                    value: "مقدار",
+                    titleController: Get.find<SizeController>().getProductMeterTitleNumTowTextEditingController,
+                    valueController: Get.find<SizeController>().getProductMeterValueNumTowTextEditingController,
+                  ),
+                  const Gap(10),
+                  _meter(
+                    title: 'متن قسمت متر شده',
+                    value: "مقدار",
+                    titleController: Get.find<SizeController>().getProductTitleNumThreeTextEditingController,
+                    valueController: Get.find<SizeController>().getProductValueNumThreeTextEditingController,
+                  ),
+                  const Gap(16),
+                  Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: Get.find<SizeController>().getPriceTextEditingController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [Get.find<SizeController>().getFormatter],
+                      decoration: const InputDecoration(
                         label: Text('قیمت'),
                       ),
                     ),
@@ -77,10 +94,13 @@ class MyCustomDialogs {
                     child: Text('اختیاری'),
                   ),
                   const Gap(8),
-                  const Directionality(
+                  Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: Get.find<SizeController>().getDiscountPriceTextEditingController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [Get.find<SizeController>().getFormatter],
+                      decoration: const InputDecoration(
                         label: Text('قیمت با تخفیف'),
                       ),
                     ),
@@ -111,13 +131,18 @@ class MyCustomDialogs {
         barrierDismissible: false);
   }
 
-  static Widget _meter({required String title, required String value}) {
+  static Widget _meter(
+      {required String title,
+      required String value,
+      required TextEditingController titleController,
+      required TextEditingController valueController}) {
     return Row(
       children: [
         Expanded(
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: TextField(
+              controller: valueController,
               decoration: InputDecoration(
                 label: Text(value),
               ),
@@ -129,6 +154,7 @@ class MyCustomDialogs {
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: TextField(
+              controller: titleController,
               decoration: InputDecoration(
                 label: Text(title),
               ),

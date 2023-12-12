@@ -206,7 +206,6 @@ class SettingPage extends StatelessWidget {
                                 ),
                               );
                             }
-
                             return ImageItem(
                               onRemove: () => clr.removeImage(index),
                               image: clr.getImageSelected[index].imagePath,
