@@ -44,4 +44,21 @@ class SizeController extends GetxController {
   // discount price text controller
   final TextEditingController _discountPriceTextEditingController = TextEditingController();
   TextEditingController get getDiscountPriceTextEditingController => _discountPriceTextEditingController;
+
+  void saveSize() {
+    if (_sizeTextEditingController.text.isEmpty) return;
+    if (_priceTextEditingController.text.isEmpty) return;
+    _sizeModel.add(SizeModel(
+      price: _priceTextEditingController.text,
+      size: _sizeTextEditingController.text,
+      discounted: _discountPriceTextEditingController.text,
+      titleOne: _productMeterTitleNumOneTextEditingController.text,
+      valueOne: _productMeterValueNumOneTextEditingController.text,
+      titleTwo: _productMeterTitleNumTowTextEditingController.text,
+      valueTwo: _productMeterValueNumTowTextEditingController.text,
+      titleThree: _productTitleNumThreeTextEditingController.text,
+      valueThree: _productValueNumThreeTextEditingController.text,
+    ));
+    update();
+  }
 }

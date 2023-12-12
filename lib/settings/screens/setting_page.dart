@@ -233,7 +233,7 @@ class SettingPage extends StatelessWidget {
             ),
             const Gap(8),
             Container(
-              height: 180,
+              height: 250,
               width: double.infinity,
               margin: const EdgeInsets.all(4),
               decoration: BoxDecoration(
@@ -244,7 +244,6 @@ class SettingPage extends StatelessWidget {
                 builder: (clr) {
                   return ListView.builder(
                     shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
                     itemCount: clr.getSizeModel.length + 1,
                     itemBuilder: (context, index) {
                       return (clr.getSizeModel.length == index || clr.getSizeModel.isEmpty)
@@ -254,12 +253,9 @@ class SettingPage extends StatelessWidget {
                               },
                               child: Container(
                                 width: 60,
-                                height: 60,
+                                height: 40,
                                 margin: const EdgeInsets.only(
-                                  top: 60,
-                                  bottom: 60,
-                                  left: 8,
-                                  right: 8,
+                                  top: 10,
                                 ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
@@ -276,7 +272,7 @@ class SettingPage extends StatelessWidget {
                               ),
                             )
                           : SizeItem(
-                              model: SizeModel(),
+                              model: clr.getSizeModel[index],
                             );
                     },
                   );
