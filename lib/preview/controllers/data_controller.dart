@@ -23,7 +23,7 @@ class DataController extends GetxController {
   BoxFit get getFirstImageBoxFit => _firstImageBoxFit;
 
   BoxFit _secondImageBoxFit = BoxFit.contain;
-  BoxFit get getsecondImageBoxFit => _secondImageBoxFit;
+  BoxFit get getSecondImageBoxFit => _secondImageBoxFit;
 
   void setImages() {
     if (_productModel.productImages != null && _productModel.productImages!.isEmpty) return;
@@ -104,9 +104,75 @@ class DataController extends GetxController {
         barrierColor: Colors.transparent);
   }
 
+  Color priceColor(int index) {
+    List<Color> colors = [
+      const Color(0xFFFFFFEB),
+      const Color(0xFFF1EBFF),
+      const Color(0xFFFFEBEB),
+      const Color(0xFFEBFFF0),
+      const Color(0xFFE9F7FF),
+      const Color(0xFFE0E9FF),
+      const Color(0xFFEBFFF0),
+      const Color(0xFFFFEBFF),
+      const Color(0xFFFFFFEB),
+    ];
+    return colors[index];
+  }
+
   void changeSecondImageBoxFit() {
-    Get.bottomSheet(Container(
-      color: Colors.amber,
-    ));
+    Get.bottomSheet(
+        Container(
+          height: 80,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: myGrey[100]!,
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(15),
+              topLeft: Radius.circular(15),
+            ),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(-2, 0),
+                color: myGrey[600]!.withOpacity(0.5),
+                blurRadius: 8,
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Gap(8),
+              Text(
+                'نوع نمایش تصویر',
+                style: TextStyle(
+                  fontFamily: 'mikhak',
+                  fontSize: 14,
+                  color: myGrey[500],
+                ),
+              ),
+              const Gap(8),
+              WidgetRadioGroup(
+                activeIconColor: myGreen[500],
+                activeDefault: 1,
+                deactivateIconColor: myGrey[400],
+                direction: Axis.horizontal,
+                itemMargin: const EdgeInsets.symmetric(horizontal: 8),
+                iconHeight: 30,
+                data: [
+                  RadioData(iconPath: "svgs/fill.svg", value: BoxFit.fill),
+                  RadioData(iconPath: "svgs/cover.svg", value: BoxFit.cover),
+                  RadioData(iconPath: "svgs/contain.svg", value: BoxFit.contain),
+                  RadioData(iconPath: "svgs/fill_height.svg", value: BoxFit.fitHeight),
+                  RadioData(iconPath: "svgs/fill_width.svg", value: BoxFit.fitWidth),
+                ],
+                iconTye: IconType.svgAsset,
+                onRadioClick: (value, index) {
+                  _secondImageBoxFit = value;
+                  update();
+                },
+              ),
+            ],
+          ),
+        ),
+        barrierColor: Colors.transparent);
   }
 }

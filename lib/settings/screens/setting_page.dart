@@ -272,6 +272,7 @@ class SettingPage extends StatelessWidget {
                             )
                           : SizeItem(
                               model: clr.getSizeModel[index],
+                              index: index,
                             );
                     },
                   );

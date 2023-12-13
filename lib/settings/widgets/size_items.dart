@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:goleyakh_storys/settings/controllers/size_controller.dart';
 import 'package:goleyakh_storys/settings/models/size_model.dart';
 import 'package:goleyakh_storys/static/colors.dart';
 
 class SizeItem extends StatelessWidget {
   final SizeModel model;
+  final int index;
   const SizeItem({
+    required this.index,
     required this.model,
     super.key,
   });
@@ -34,7 +38,7 @@ class SizeItem extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: myGreen[900]!.withOpacity(0.2),
+                  color: myGreen[900]!.withOpacity(0.3),
                   border: Border.all(
                     width: 1,
                     color: myGreen[300]!,
@@ -53,7 +57,7 @@ class SizeItem extends StatelessWidget {
           ),
           const Gap(10),
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -79,7 +83,9 @@ class SizeItem extends StatelessWidget {
           Expanded(
             flex: 2,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.find<SizeController>().removeSize(model);
+              },
               child: SvgPicture.asset(
                 'svgs/close.svg',
                 colorFilter: ColorFilter.mode(

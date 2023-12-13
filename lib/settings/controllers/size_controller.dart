@@ -66,12 +66,17 @@ class SizeController extends GetxController {
   void _clearSizeTextData() {
     _discountPriceTextEditingController.clear();
     _priceTextEditingController.clear();
-    _productMeterTitleNumOneTextEditingController.clear();
+    // _productMeterTitleNumOneTextEditingController.clear();
     _productMeterValueNumOneTextEditingController.clear();
-    _productMeterTitleNumTwoTextEditingController.clear();
+    // _productMeterTitleNumTwoTextEditingController.clear();
     _productMeterValueNumTowTextEditingController.clear();
-    _productTitleNumThreeTextEditingController.clear();
+    // _productTitleNumThreeTextEditingController.clear();
     _productValueNumThreeTextEditingController.clear();
     _sizeTextEditingController.clear();
+  }
+
+  void removeSize(SizeModel model) {
+    _sizeModel.remove(model);
+    update();
   }
 }
