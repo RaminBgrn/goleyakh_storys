@@ -81,7 +81,8 @@ class StoryPreView extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: TextStyle(
                               fontFamily: 'lalezar',
-                              fontSize: 20,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
                               color: myGrey[700],
                             ),
                           ),
@@ -97,9 +98,9 @@ class StoryPreView extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: TextStyle(
                               fontFamily: 'estedad',
-                              color: myGrey[500],
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
+                              color: myGrey[600],
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           const Gap(4),
@@ -108,7 +109,7 @@ class StoryPreView extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: TextStyle(
                               fontFamily: 'lalezar',
-                              fontSize: 16,
+                              fontSize: 17,
                               color: myGrey[700],
                             ),
                           ),
@@ -135,15 +136,15 @@ class StoryPreView extends StatelessWidget {
                                           alignment: Alignment.center,
                                           margin: const EdgeInsets.all(2),
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(6),
-                                            color: Colors.white,
-                                          ),
+                                              borderRadius: BorderRadius.circular(6),
+                                              color: Colors.white,
+                                              border: Border.all(width: 1, color: myRose[200]!)),
                                           child: Text(
                                             clr.getProductModel.productSizes![index].size!,
                                             style: TextStyle(
                                                 fontFamily: 'estedad',
-                                                height: 1.7,
-                                                fontSize: clr.getProductModel.productSizes![index].size!.length > 3 ? 10 : 14,
+                                                height: 1.6,
+                                                fontSize: clr.getProductModel.productSizes![index].size!.length > 3 ? 14 : 16,
                                                 color: myGrey[700],
                                                 fontWeight: FontWeight.w900),
                                           ),
@@ -152,12 +153,42 @@ class StoryPreView extends StatelessWidget {
                                       Expanded(
                                         flex: 10,
                                         child: Center(
-                                          child: Text(
-                                            clr.getProductModel.productSizes![index].price!,
-                                            style: TextStyle(
-                                                fontFamily: 'estedad', height: 1.7, fontSize: 14, color: myGrey[700], fontWeight: FontWeight.w700),
-                                          ),
-                                        ),
+                                            child: RichText(
+                                          textDirection: TextDirection.rtl,
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: clr.getProductModel.productSizes![index].price!.split(' ')[1],
+                                              style: TextStyle(
+                                                fontFamily: 'estedad',
+                                                height: 1.7,
+                                                fontSize: 14,
+                                                color: myGrey[700],
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: "  ${clr.getProductModel.productSizes![index].price!.split(' ')[0]}",
+                                              style: TextStyle(
+                                                fontFamily: 'estedad',
+                                                height: 1.7,
+                                                fontSize: 9,
+                                                color: myGrey[700],
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ]),
+                                        )
+                                            //  Text(
+                                            //   clr.getProductModel.productSizes![index].price!,
+                                            //   style: TextStyle(
+                                            //     fontFamily: 'estedad',
+                                            //     height: 1.7,
+                                            //     fontSize: 14,
+                                            //     color: myGrey[700],
+                                            //     fontWeight: FontWeight.w700,
+                                            //   ),
+                                            // ),
+                                            ),
                                       )
                                     ]),
                                   );
@@ -290,14 +321,48 @@ class StoryPreView extends StatelessWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.white.withOpacity(0.02),
+                        color: Colors.white.withOpacity(0.2),
                       ),
                       child: (clr.getProductModel.brandLogo != null && clr.getProductModel.brandLogo!.isNotEmpty)
-                          ? SvgPicture.asset(clr.getProductModel.brandLogo!)
+                          ? SvgPicture.asset(
+                              clr.getProductModel.brandLogo!,
+                              colorFilter: ColorFilter.mode(
+                                myGrey[400]!,
+                                BlendMode.srcIn,
+                              ),
+                            )
                           : const SizedBox(),
                     ),
                   ),
                 ),
+                (clr.getProductModel.productSKU != null && clr.getProductModel.productSKU!.isNotEmpty)
+                    ? Positioned.fill(
+                        bottom: 10,
+                        left: 10,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Container(
+                            width: 60,
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white.withOpacity(0.2),
+                            ),
+                            child: Text(
+                              clr.getProductModel.productSKU!,
+                              style: TextStyle(
+                                fontFamily: 'estedad',
+                                fontSize: 18,
+                                height: 2.2,
+                                fontWeight: FontWeight.w900,
+                                color: myGrey[400],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
