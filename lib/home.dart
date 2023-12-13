@@ -14,37 +14,32 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MainController>(builder: (clr) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: myGrey[700]!,
-          title: Text(
-            'Goleyakh',
-            style: Theme.of(context).textTheme.bodyLarge,
+    return SafeArea(
+      child: GetBuilder<MainController>(builder: (clr) {
+        return Scaffold(
+          bottomNavigationBar: SalomonBottomBar(
+            backgroundColor: myGrey[800],
+            selectedItemColor: myGreen[200],
+            currentIndex: clr.getCurrentIndex,
+            onTap: (index) {
+              clr.changePage(index);
+            },
+            items: [
+              bottomItems('svgs/setting.svg', 'تنظیمات'),
+              bottomItems('svgs/story.svg', 'استوری'),
+              bottomItems('svgs/post.svg', 'پست'),
+              bottomItems('svgs/image.svg', 'واترمارک'),
+            ],
           ),
-        ),
-        bottomNavigationBar: SalomonBottomBar(
-          backgroundColor: myGrey[800],
-          selectedItemColor: myGreen[200],
-          currentIndex: clr.getCurrentIndex,
-          onTap: (index) {
-            clr.changePage(index);
-          },
-          items: [
-            bottomItems('svgs/setting.svg', 'تنظیمات'),
-            bottomItems('svgs/story.svg', 'استوری'),
-            bottomItems('svgs/post.svg', 'پست'),
-            bottomItems('svgs/image.svg', 'واترمارک'),
-          ],
-        ),
-        body: PageView(controller: clr.getMainPageController, children: const [
-          SettingPage(),
-          StoryPreView(),
-          PostScreen(),
-          WaterMarkScreen(),
-        ]),
-      );
-    });
+          body: PageView(physics: const NeverScrollableScrollPhysics(), controller: clr.getMainPageController, children: const [
+            SettingPage(),
+            StoryPreView(),
+            PostScreen(),
+            WaterMarkScreen(),
+          ]),
+        );
+      }),
+    );
   }
 
   SalomonBottomBarItem bottomItems(String icon, String title) {

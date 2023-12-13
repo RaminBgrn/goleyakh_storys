@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goleyakh_storys/preview/controllers/data_controller.dart';
 import 'package:goleyakh_storys/settings/controllers/setting_controller.dart';
 
 class MainController extends GetxController {
@@ -23,6 +24,7 @@ class MainController extends GetxController {
         ),
         curve: Curves.easeIn);
     Get.find<SettingController>().setDataToModel();
+    Get.find<DataController>().setImages();
     update();
   }
 }

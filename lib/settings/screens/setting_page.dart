@@ -37,20 +37,20 @@ class SettingPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: TextField(
-                  controller: Get.find<SettingController>().getHeaderDescriptionController,
-                  textDirection: TextDirection.rtl,
-                  decoration: const InputDecoration(
-                    labelText: "توضیحات قسمت هدر",
-                    alignLabelWithHint: true,
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Directionality(
+            //     textDirection: TextDirection.rtl,
+            //     child: TextField(
+            //       controller: Get.find<SettingController>().getHeaderDescriptionController,
+            //       textDirection: TextDirection.rtl,
+            //       decoration: const InputDecoration(
+            //         labelText: "توضیحات قسمت هدر",
+            //         alignLabelWithHint: true,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Directionality(

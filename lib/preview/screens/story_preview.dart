@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -13,6 +15,16 @@ class StoryPreView extends StatelessWidget {
     return GetBuilder<DataController>(builder: (clr) {
       return Stack(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: SvgPicture.asset(
+                'svgs/flower.svg',
+                width: 100,
+              ),
+            ),
+          ),
           Column(
             children: [
               Expanded(
@@ -87,6 +99,17 @@ class StoryPreView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+                                child: clr.getSecondImage.isNotEmpty
+                                    ? GestureDetector(
+                                        onTap: () => clr.changeFirstImage(),
+                                        onLongPress: () => clr.changeFirstImageBoxFit(),
+                                        child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(22),
+                                            child: Image.file(
+                                              File(clr.getFirstImage),
+                                              fit: clr.getFirstImageBoxFit,
+                                            )))
+                                    : const SizedBox(),
                               ),
                             ],
                           )),
@@ -117,7 +140,7 @@ class StoryPreView extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 10, right: 10, top: 3),
                               color: Colors.white,
                               child: Text(
-                                'آلمان',
+                                clr.getProductModel.productCountry ?? 'کشور',
                                 style: TextStyle(
                                   fontFamily: 'estedad',
                                   fontWeight: FontWeight.w600,
@@ -165,7 +188,7 @@ class StoryPreView extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.bottomLeft,
                                       child: Text(
-                                        '8012',
+                                        clr.getProductModel.productSKU ?? '0',
                                         style: TextStyle(
                                           fontFamily: 'estedad',
                                           fontWeight: FontWeight.w900,
@@ -186,19 +209,107 @@ class StoryPreView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Container(
-                  color: Colors.white,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 16,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 4.0, top: 8.0),
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'https://',
+                                          style: TextStyle(
+                                            fontFamily: 'mons',
+                                            fontSize: 13,
+                                            color: myGrey[500],
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: " GOLEYAKH.STORE",
+                                          style: TextStyle(
+                                            color: myGrey[700],
+                                            fontFamily: 'estedad',
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: 1,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const Gap(8),
+                                Text(
+                                  clr.getProductModel.productName ?? 'نام',
+                                  style: TextStyle(
+                                    fontFamily: 'lalezar',
+                                    fontSize: 24,
+                                    color: myGrey[700],
+                                  ),
+                                ),
+                                const Gap(8),
+                                Container(
+                                  width: 80,
+                                  height: 3,
+                                  color: myGrey[600],
+                                ),
+                                const Gap(16),
+                                Text(
+                                  clr.getProductModel.productDescription ?? 'توضیح',
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontFamily: 'estedad',
+                                    color: myGrey[600],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 13,
+                            child: SizedBox(),
+                          ),
+                        ],
+                      ),
+                      const Gap(8),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60.0),
+                        child: Text(
+                          'سایزبندی:',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: 'lalezar',
+                            fontSize: 24,
+                            color: myGrey[700],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
           Positioned.fill(
-            right: 10,
+            top: 50,
+            right: 5,
             child: Align(
               alignment: Alignment.centerRight,
               child: Container(
-                width: 170,
-                height: 210,
+                width: 160,
+                height: 220,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(28),
                   color: const Color(0xFFD9D9D9),
@@ -214,6 +325,20 @@ class StoryPreView extends StatelessWidget {
                     ),
                   ],
                 ),
+                child: clr.getSecondImage.isNotEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          clr.changeSecondImage();
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(22),
+                          child: Image.file(
+                            File(clr.getSecondImage),
+                            fit: clr.getFirstImageBoxFit,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ),
             ),
           ),

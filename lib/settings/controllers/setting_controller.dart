@@ -32,7 +32,6 @@ class SettingController extends GetxController {
   TextEditingController get getProductSKUController => _productSKUController;
 
   void setDataToModel() {
-    print(Get.find<SettingController>().getProductModel.brandLogo);
     _productModel.productName = _productTitleController.text;
     _productModel.headerDescription = _headerDescriptionController.text;
     _productModel.productDescription = _productDescriptionController.text;
